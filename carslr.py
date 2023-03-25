@@ -108,4 +108,15 @@ def errorcalc(preddata,test):
 #rmse value
 rmse=errorcalc(base_pred,test_y)
 
+lgr=LinearRegression(fit_intercept=True)
+model_lgr=lgr.fit(train_x,train_y)
+pred_lgr=lgr.predict(test_x)
+mse_lgr=errorcalc(pred_lgr,test_y)
+# error dropped
 
+test1_r=model_lgr.score(test_x,test_y)
+train1_r=model_lgr.score(train_x,train_y)
+
+#residuals
+res=test_y-pred_lgr
+sns.regplot(y=res,x=pred_lgr,fit_reg=False,data=carsdata)
